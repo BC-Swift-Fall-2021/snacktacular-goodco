@@ -47,7 +47,7 @@ class Review {
     
     func saveData(spot: Spot, completion: @escaping (Bool) -> ()) {
         let db = Firestore.firestore()
-
+        
         // Create the dictionary representing data we want to save
         let dataToSave: [String: Any] = self.dictionary
         // If we HAVE saved a record, we will have an ID. Otherwise, .addDocument will create one.
@@ -60,7 +60,9 @@ class Review {
                 }
                 self.documentID = ref!.documentID
                 print("Added document: \(self.documentID) to spot \(spot.documentID)") // It worked!
-                completion(true)
+                spot.updateAverageRating {
+                    completion(true)
+                }
             }
         } else {
             let ref = db.collection("spots").document(spot.documentID).collection("reviews").document(self.documentID)
@@ -70,8 +72,24 @@ class Review {
                     return completion(false)
                 }
                 self.documentID = ref.documentID
-                print("Updated document: \(self.documentID) in spot \(spot.documentID)") // It worked!
-                completion(true)
+                print("Updated document: \(self.documentID) in spot \(spot.documentID)")
+                spot.updateAverageRating {
+                    completion(true)
+                }
+            }
+        }
+    }
+    
+    func deleteData(spot: Spot, completion: @escaping (Bool) -> ()) {
+        let db = Firestore.firestore()
+        db.collection("spots").document(spot.documentID).collection("reviews").document(documentID).delete { (error) in
+            if let error = error {
+                print("Error: deleting review documentID\(self.documentID). \(error.localizedDescription)")
+                completion(false)
+            } else {
+                spot.updateAverageRating {
+                    completion(true)
+                }
             }
         }
     }
