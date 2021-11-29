@@ -37,7 +37,7 @@ class SnackUserTableViewCell: UITableViewCell {
                 return
             }
             userImageView.sd_imageTransition = .fade
-            userImageView.sd_imageTransition?.duration = 0.10
+            userImageView.sd_imageTransition?.duration = 0.1
             userImageView.sd_setImage(with: url, placeholderImage: UIImage(systemName: "person.crop.circle"))
         }
     }
