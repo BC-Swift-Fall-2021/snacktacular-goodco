@@ -237,7 +237,7 @@
                                             <outlet property="displayNameLabel" destination="tYm-XX-NWh" id="8Ui-CU-43w"/>
                                             <outlet property="emailLabel" destination="zuy-US-Lb1" id="eB8-EK-x0K"/>
                                             <outlet property="userImageView" destination="fbP-jy-eYN" id="EwF-Wa-h4A"/>
-                                            <outlet property="userSinceLabel" destination="QjT-xG-E3y" id="S9D-uT-TOc"/>
+                                            <outlet property="userSinceLabel" destination="GWT-KE-SlB" id="n0q-So-sVq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
