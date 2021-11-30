@@ -47,7 +47,7 @@ class SnackUser {
     func saveIfNewUser(completion: @escaping (Bool) -> ()) {
         let db = Firestore.firestore()
         let userRef = db.collection("users").document(documentID)
-        userRef.getDocument { document, error in
+        userRef.getDocument { (document, error) in
             guard error == nil else {
                 print("ERROR: could not access document for user \(self.documentID)")
                 return completion(false)
